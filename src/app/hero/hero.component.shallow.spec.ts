@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 import { HeroComponent } from './hero.component';
 
 describe('HeroComponent (shallow integration tests', () => {
@@ -7,6 +8,7 @@ describe('HeroComponent (shallow integration tests', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [HeroComponent],
     });
     fixture = TestBed.createComponent(HeroComponent);

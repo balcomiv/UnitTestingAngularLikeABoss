@@ -37,3 +37,11 @@ https://thinkster.io/tutorials/unit-testing-angular-like-a-boss-workshop/video-2
 ## Helpful Links
 
 https://www.npmjs.com/package/jasmine-parameterized
+
+### Spectator
+
+https://netbasal.gitbooks.io/spectator/content/services/testing-services.html
+
+## Ivy Issue With Schema Errors (unit test should fail if element unkown)
+
+https://github.com/angular/angular/issues/36430
