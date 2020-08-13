@@ -7,7 +7,7 @@ import { HeroService } from '../hero.service';
 import { HeroComponent } from '../hero/hero.component';
 import { HeroesComponent } from './heroes.component';
 
-describe('HeroesComponent (shallow integration tests)', () => {
+describe('HeroesComponent (deep integration tests)', () => {
   let fixture: ComponentFixture<HeroesComponent>;
   let mockHeroService: jasmine.SpyObj<HeroService>;
   let HEROES;
@@ -45,16 +45,62 @@ describe('HeroesComponent (shallow integration tests)', () => {
       By.directive(HeroComponent)
     );
 
-    const firstHero: HeroComponent =
+    const firstHeroComp: HeroComponent =
       heroComponentDebugElements[0].componentInstance;
-    const secondHero: HeroComponent =
+    const secondHeroComp: HeroComponent =
       heroComponentDebugElements[1].componentInstance;
-    const thirdHero: HeroComponent =
+    const thirdHeroComp: HeroComponent =
       heroComponentDebugElements[2].componentInstance;
 
     expect(heroComponentDebugElements.length).toEqual(3);
-    expect(firstHero.hero.name).toEqual('SpiderDude');
-    expect(secondHero.hero.name).toEqual('WonderWoman');
-    expect(thirdHero.hero.name).toEqual('SuperDude');
+    expect(firstHeroComp.hero.name).toEqual('SpiderDude');
+    expect(secondHeroComp.hero.name).toEqual('WonderWoman');
+    expect(thirdHeroComp.hero.name).toEqual('SuperDude');
+  });
+
+  describe('DOM Interactions', () => {
+    describe('Triggering Events on Elements', () => {
+      it(`should call heroService.deleteHero when HeroComponent's delete btn is clicked`, () => {
+        spyOn(fixture.componentInstance, 'delete');
+        mockHeroService.getHeroes.and.returnValue(of(HEROES));
+
+        fixture.detectChanges();
+
+        const heroComponentDebugElements: DebugElement[] = fixture.debugElement.queryAll(
+          By.directive(HeroComponent)
+        );
+        const deleteButton = heroComponentDebugElements[0].query(
+          By.css('button')
+        );
+        deleteButton.triggerEventHandler('click', {
+          stopPropagation: () => {},
+        });
+
+        expect(fixture.componentInstance.delete).toHaveBeenCalledWith(
+          HEROES[0]
+        );
+      });
+    });
+
+    describe('Emitting Events from Children', () => {
+      it(`should call heroService.deleteHero when HeroComponent emits a delete event`, () => {
+        spyOn(fixture.componentInstance, 'delete');
+        mockHeroService.getHeroes.and.returnValue(of(HEROES));
+
+        fixture.detectChanges();
+
+        const heroComponentDebugElements: DebugElement[] = fixture.debugElement.queryAll(
+          By.directive(HeroComponent)
+        );
+
+        (<HeroComponent>(
+          heroComponentDebugElements[0].componentInstance
+        )).delete.emit(undefined);
+
+        expect(fixture.componentInstance.delete).toHaveBeenCalledWith(
+          HEROES[0]
+        );
+      });
+    });
   });
 });
