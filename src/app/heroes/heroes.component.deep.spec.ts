@@ -1,4 +1,6 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { HeroService } from '../hero.service';
@@ -30,14 +32,29 @@ describe('HeroesComponent (shallow integration tests)', () => {
       providers: [{ provide: HeroService, useValue: mockHeroService }],
     });
     fixture = TestBed.createComponent(HeroesComponent);
+  });
+
+  it('should render each hero as a hero component', () => {
     mockHeroService.getHeroes.and.returnValue(of(HEROES));
 
     //  Call change detection (fire lifecycle events)
     //  Will initialize parent component and all child components
     fixture.detectChanges();
-  });
 
-  it('should behave...', () => {
-    expect(true).toEqual(true);
+    const heroComponentDebugElements: DebugElement[] = fixture.debugElement.queryAll(
+      By.directive(HeroComponent)
+    );
+
+    const firstHero: HeroComponent =
+      heroComponentDebugElements[0].componentInstance;
+    const secondHero: HeroComponent =
+      heroComponentDebugElements[1].componentInstance;
+    const thirdHero: HeroComponent =
+      heroComponentDebugElements[2].componentInstance;
+
+    expect(heroComponentDebugElements.length).toEqual(3);
+    expect(firstHero.hero.name).toEqual('SpiderDude');
+    expect(secondHero.hero.name).toEqual('WonderWoman');
+    expect(thirdHero.hero.name).toEqual('SuperDude');
   });
 });
