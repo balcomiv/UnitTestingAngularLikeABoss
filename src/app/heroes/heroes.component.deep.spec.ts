@@ -121,5 +121,38 @@ describe('HeroesComponent (deep integration tests)', () => {
         );
       });
     });
+
+    describe('Interacting with Input Boxes', () => {
+      it('should add new hero to hero list when add btn is clicked', () => {
+        //  Arrange
+        //  ============================================================
+        mockHeroService.getHeroes.and.returnValue(of(HEROES));
+        fixture.detectChanges(); //  Don't forget, Heroes Comp loads heroes in NgOnInit(), so you need to fire lifecycle events
+
+        const heroName = 'Mr. Ice';
+        mockHeroService.addHero.and.returnValue(
+          of({ id: 5, name: heroName, strength: 4 })
+        );
+
+        const inputElement: HTMLInputElement = fixture.debugElement.query(
+          By.css('input')
+        ).nativeElement;
+
+        const addButton = fixture.debugElement.queryAll(By.css('button'))[0];
+
+        //  Act
+        //  ============================================================
+        inputElement.value = heroName;
+        addButton.triggerEventHandler('click', null);
+        fixture.detectChanges();
+
+        const heroText = (fixture.debugElement.query(By.css('ul'))
+          .nativeElement as HTMLElement).textContent;
+
+        //  Assert
+        //  ============================================================
+        expect(heroText).toContain(heroName);
+      });
+    });
   });
 });
