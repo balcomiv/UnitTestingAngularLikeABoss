@@ -102,5 +102,24 @@ describe('HeroesComponent (deep integration tests)', () => {
         );
       });
     });
+
+    describe('Raising Events on Child Directives', () => {
+      it(`should call heroService.deleteHero when HeroComponent's delete btn is clicked`, () => {
+        spyOn(fixture.componentInstance, 'delete');
+        mockHeroService.getHeroes.and.returnValue(of(HEROES));
+
+        fixture.detectChanges();
+
+        const heroComponentDebugElements: DebugElement[] = fixture.debugElement.queryAll(
+          By.directive(HeroComponent)
+        );
+
+        heroComponentDebugElements[0].triggerEventHandler('delete', null);
+
+        expect(fixture.componentInstance.delete).toHaveBeenCalledWith(
+          HEROES[0]
+        );
+      });
+    });
   });
 });
