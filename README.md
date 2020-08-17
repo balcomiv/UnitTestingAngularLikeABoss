@@ -45,3 +45,7 @@ https://netbasal.gitbooks.io/spectator/content/services/testing-services.html
 ## Ivy Issue With Schema Errors (unit test should fail if element unkown)
 
 https://github.com/angular/angular/issues/36430
+
+## Policies && Procedures
+
+https://medium.com/@paynoattn/use-usevalue-if-your-stub-is-a-object-useclass-if-your-stub-is-a-class-88ba6e1574f0
