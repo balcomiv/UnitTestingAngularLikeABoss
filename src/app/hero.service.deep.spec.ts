@@ -30,6 +30,8 @@ describe('Hero', () => {
     httpTestingController = TestBed.inject(HttpTestingController); // Get service from DI registry
   });
 
+  //  Fix Me -- There is a console error regarding missing 'expect'.
+  //  check other tutorials to see how they test http. Did something change?
   describe('getHero()', () => {
     it('should call get with the correct URL', () => {
       heroService.getHero(4).subscribe();

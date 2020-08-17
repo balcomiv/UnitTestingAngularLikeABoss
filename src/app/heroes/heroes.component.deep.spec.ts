@@ -58,7 +58,7 @@ describe('HeroesComponent (deep integration tests)', () => {
     expect(thirdHeroComp.hero.name).toEqual('SuperDude');
   });
 
-  describe('DOM Interactions', () => {
+  describe('DOM Interactions && Routing Components', () => {
     describe('Triggering Events on Elements', () => {
       it(`should call heroService.deleteHero when HeroComponent's delete btn is clicked`, () => {
         spyOn(fixture.componentInstance, 'delete');
@@ -152,6 +152,19 @@ describe('HeroesComponent (deep integration tests)', () => {
         //  Assert
         //  ============================================================
         expect(heroText).toContain(heroName);
+      });
+    });
+
+    describe('Testing the RouterLink', () => {
+      it('should behave...', () => {
+        mockHeroService.getHeroes.and.returnValue(of(HEROES));
+        fixture.detectChanges();
+
+        const href = fixture.debugElement
+          .query(By.css('a'))
+          .nativeElement.getAttribute('href');
+
+        expect(href).toEqual('/detail/1');
       });
     });
   });
