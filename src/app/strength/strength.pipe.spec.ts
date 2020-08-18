@@ -6,8 +6,8 @@ describe('Strength Pipe', () => {
     const lowerBound = 0;
     const upperBound = 9;
 
-    const lowerBoundOutput = pipe.transform(0);
-    const upperBoundOutput = pipe.transform(9);
+    const lowerBoundOutput = pipe.transform(lowerBound);
+    const upperBoundOutput = pipe.transform(upperBound);
 
     expect(lowerBoundOutput).toEqual(`${lowerBound} (weak)`);
     expect(upperBoundOutput).toEqual(`${upperBound} (weak)`);
