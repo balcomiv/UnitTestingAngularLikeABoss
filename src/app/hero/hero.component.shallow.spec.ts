@@ -33,12 +33,12 @@ describe('HeroComponent (shallow integration tests', () => {
 
     fixture.detectChanges();
 
-    //  Native
+    //  Native Element example
     expect(fixture.nativeElement.querySelector('a').textContent).toContain(
       'SuperDude'
     );
 
-    //  Debug Element
+    //  Debug Element example
     expect(
       fixture.debugElement.query(By.css('a')).nativeElement.textContent
     ).toContain('SuperDude');
