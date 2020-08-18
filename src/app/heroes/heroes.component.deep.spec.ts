@@ -160,9 +160,8 @@ describe('HeroesComponent (deep integration tests)', () => {
         mockHeroService.getHeroes.and.returnValue(of(HEROES));
         fixture.detectChanges();
 
-        const href = fixture.debugElement
-          .query(By.css('a'))
-          .nativeElement.getAttribute('href');
+        const href = (fixture.debugElement.query(By.css('a'))
+          .nativeElement as HTMLElement).getAttribute('href');
 
         expect(href).toEqual('/detail/1');
       });

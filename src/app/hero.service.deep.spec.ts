@@ -30,17 +30,26 @@ describe('Hero', () => {
     httpTestingController = TestBed.inject(HttpTestingController); // Get service from DI registry
   });
 
-  //  Fix Me -- There is a console error regarding missing 'expect'.
-  //  check other tutorials to see how they test http. Did something change?
+  /**
+   * Unit testing HTTP Client
+   */
   describe('getHero()', () => {
     it('should call get with the correct URL', () => {
       heroService.getHero(4).subscribe();
+
       // heroService.getHero(3).subscribe();    // Uncomment to see the verify catch the extra call and fail the test
 
-      // Expect is a little differnt for http
-      const request = httpTestingController.expectOne('api/heroes/4');
-      request.flush({ id: 4, name: 'SuperDude', strength: 100 });
-      httpTestingController.verify(); //  Verify we got only the exact call we expected. No extraneous calls.
+      // Assertion is a little differnt for http
+      const req = httpTestingController.expectOne('api/heroes/4');
+
+      //  Set the fake data to be returned by the mock
+      req.flush({ id: 4, name: 'SuperDude', strength: 100 });
+
+      //  Verify we got only the exact call we expected. No extraneous calls.
+      httpTestingController.verify();
+
+      //  Assert anything else we need to for the request
+      expect(req.request.method).toEqual('GET');
     });
   });
 });
