@@ -42,6 +42,10 @@ https://www.npmjs.com/package/jasmine-parameterized
 
 https://netbasal.gitbooks.io/spectator/content/services/testing-services.html
 
+### Ng Mocks
+
+https://www.npmjs.com/package/ng-mocks
+
 ## Ivy Issue With Schema Errors (unit test should fail if element unkown)
 
 https://github.com/angular/angular/issues/36430
