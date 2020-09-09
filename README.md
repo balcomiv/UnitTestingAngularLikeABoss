@@ -49,3 +49,11 @@ https://github.com/angular/angular/issues/36430
 ## Policies && Procedures
 
 https://medium.com/@paynoattn/use-usevalue-if-your-stub-is-a-object-useclass-if-your-stub-is-a-class-88ba6e1574f0
+
+## I'm looking at these for Policies && Procedures
+
+https://thecodebuzz.com/angular-unit-testing-with-samples-and-best-practices/
+
+https://dev.to/coly010/unit-testing-angular-component-testing-2g47
+
+https://angular.io/guide/testing-components-scenarios

@@ -104,7 +104,7 @@ describe('HeroesComponent (deep integration tests)', () => {
     });
 
     describe('Raising Events on Child Directives', () => {
-      it(`should call heroService.deleteHero when HeroComponent's delete btn is clicked`, () => {
+      it(`should call heroService.deleteHero when HeroComponent's delete event is raised`, () => {
         spyOn(fixture.componentInstance, 'delete');
         mockHeroService.getHeroes.and.returnValue(of(HEROES));
 
@@ -156,7 +156,7 @@ describe('HeroesComponent (deep integration tests)', () => {
     });
 
     describe('Testing the RouterLink', () => {
-      it('should behave...', () => {
+      it('should have correct route for the first hero', () => {
         mockHeroService.getHeroes.and.returnValue(of(HEROES));
         fixture.detectChanges();
 

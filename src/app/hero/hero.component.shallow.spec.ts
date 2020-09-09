@@ -3,7 +3,7 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HeroComponent } from './hero.component';
 
-describe('HeroComponent (shallow integration tests', () => {
+describe('HeroComponent (shallow integration tests)', () => {
   let fixture: ComponentFixture<HeroComponent>;
 
   beforeEach(() => {

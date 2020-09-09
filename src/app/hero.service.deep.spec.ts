@@ -37,7 +37,7 @@ describe('Hero', () => {
     it('should call get with the correct URL', () => {
       heroService.getHero(4).subscribe();
 
-      // heroService.getHero(3).subscribe();    // Uncomment to see the verify catch the extra call and fail the test
+      // heroService.getHero(3).subscribe();    // Uncomment to see the expectOne catch the extra call and fail the test
 
       // Assertion is a little differnt for http
       const req = httpTestingController.expectOne('api/heroes/4');
