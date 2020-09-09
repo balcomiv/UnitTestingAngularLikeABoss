@@ -1,5 +1,10 @@
 import { Location } from '@angular/common';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  TestBed,
+} from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
@@ -53,4 +58,15 @@ describe('HeroDetailComponent', () => {
       'SUPER DUDE Details'
     );
   });
+
+  it('should call updateHero when save is clicked', fakeAsync(() => {
+    mockHeroService.updateHero.and.returnValue(of({}));
+
+    fixture.componentInstance.save();
+
+    //  tick(250); tick forward 250 ms
+    flush(); //  Fast forward clock until all waiting tasks in zone have been executed
+
+    expect(mockHeroService.updateHero).toHaveBeenCalled();
+  }));
 });
