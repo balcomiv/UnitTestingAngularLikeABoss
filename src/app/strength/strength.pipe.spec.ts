@@ -13,9 +13,9 @@ describe('Strength Pipe', () => {
     expect(upperBoundOutput).toEqual(`${upperBound} (weak)`);
   });
 
-  it('should return strong - strength > 10 && < 20', () => {
+  it('should return strong - strength >= 10 && < 20', () => {
     const pipe = new StrengthPipe();
-    const lowerBound = 11;
+    const lowerBound = 10;
     const upperBound = 19;
 
     const lowerBoundOutput = pipe.transform(lowerBound);
@@ -25,7 +25,7 @@ describe('Strength Pipe', () => {
     expect(upperBoundOutput).toEqual(`${upperBound} (strong)`);
   });
 
-  it('should return unbelievable - strength > 20', () => {
+  it('should return unbelievable - strength >= 20', () => {
     const pipe = new StrengthPipe();
     const lowerBound = 20;
 
